@@ -23,13 +23,13 @@ if [ -d "$BIN_DIR/tomogram_seg_scripts" ]; then
 else
     # Download scripts from GitHub repository
     git clone "$REPOSITORY_URL" "$BIN_DIR/tomogram_seg_scripts"
-    
+
     # Move contents of Scripts directory to tomogram_seg_scripts
     mv "$BIN_DIR/tomogram_seg_scripts/Scripts/"* "$BIN_DIR/tomogram_seg_scripts/"
-    
+
     # Remove the now empty Scripts directory
     rmdir "$BIN_DIR/tomogram_seg_scripts/Scripts" || echo "Scripts directory is already empty or does not exist."
-    
+
     # Make all scripts executable
     chmod +x "$BIN_DIR/tomogram_seg_scripts"/*
 fi
@@ -38,6 +38,16 @@ fi
 if [[ ":$PATH:" != *":$BIN_DIR/tomogram_seg_scripts:"* ]]; then
     export PATH="$PATH:$BIN_DIR/tomogram_seg_scripts"
 fi
+
+# Update .zshrc
+SHELL_CONFIG_FILE="$HOME/.zshrc"
+
+# Append export commands to the zsh configuration file
+echo 'export PATH="$PATH:$HOME/bin"' >> "$SHELL_CONFIG_FILE"
+echo 'export PATH="$PATH:$HOME/bin/tomogram_seg_scripts"' >> "$SHELL_CONFIG_FILE"
+
+# Source the zsh configuration file to apply changes to the current shell
+source "$SHELL_CONFIG_FILE"
 
 # Check if the path has been updated
 echo "Updated PATH: $PATH"
