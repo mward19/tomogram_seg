@@ -1,6 +1,7 @@
 # Pipeline
+ - Download `seg_setup.sh`, install [ITK-SNAP](http://www.itksnap.org/pmwiki/pmwiki.php?n=Downloads.SNAP3).
  - Run the script `seg_setup.sh` by typing `source seg_setup.sh` where the script is located.
- - Be sure that ITK-SNAP is installed and callable from the terminal with the command `itksnap`.
+ - Be sure that ITK-SNAP is installed and callable from the terminal with the command `itksnap`. In Linux this seems to require editing $PATH to include the `itksnap` executable included in the downloaded directory.
  - Be sure the current python environment has the necessary packages installed (like `mrcfile`). This is easy with a Python virtual environment.
  - Navigate to folder containing `.mrc` data
  - Call `segment [path/to/myfile.mrc]` to convert `myfile.mrc` to a .mha file and open in in ITK-SNAP
