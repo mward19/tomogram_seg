@@ -39,15 +39,24 @@ if [[ ":$PATH:" != *":$BIN_DIR/tomogram_seg_scripts:"* ]]; then
     export PATH="$PATH:$BIN_DIR/tomogram_seg_scripts"
 fi
 
-# Update .zshrc
-SHELL_CONFIG_FILE="$HOME/.zshrc"
+# Check if the current shell is zsh
+if [[ "$SHELL" == *"zsh" ]]; then
+    # Update .zshrc
+    SHELL_CONFIG_FILE="$HOME/.zshrc"
 
-# Append export commands to the zsh configuration file
-echo 'export PATH="$PATH:$HOME/bin"' >> "$SHELL_CONFIG_FILE"
-echo 'export PATH="$PATH:$HOME/bin/tomogram_seg_scripts"' >> "$SHELL_CONFIG_FILE"
+    # Check and add export command for $BIN_DIR if not already in .zshrc
+    if ! grep -q 'export PATH="$PATH:$HOME/bin"' "$SHELL_CONFIG_FILE"; then
+        echo 'export PATH="$PATH:$HOME/bin"' >> "$SHELL_CONFIG_FILE"
+    fi
 
-# Source the zsh configuration file to apply changes to the current shell
-source "$SHELL_CONFIG_FILE"
+    # Check and add export command for tomogram_seg_scripts if not already in .zshrc
+    if ! grep -q 'export PATH="$PATH:$HOME/bin/tomogram_seg_scripts"' "$SHELL_CONFIG_FILE"; then
+        echo 'export PATH="$PATH:$HOME/bin/tomogram_seg_scripts"' >> "$SHELL_CONFIG_FILE"
+    fi
+
+    # Source the zsh configuration file to apply changes to the current shell
+    source "$SHELL_CONFIG_FILE"
+fi
 
 # Check if the path has been updated
 echo "Updated PATH: $PATH"
