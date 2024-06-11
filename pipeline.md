@@ -1,6 +1,6 @@
 # File Organization
  - Directories should be organized by dataset ID with the prefix `dataset`, i.e., a directory called `dataset_10067`.
- - Raw tomograms should be organized by run ID and placed inside dataset directories with the prefix `run`, i.e., `dataset_10067/run_1012.mrc` or `dataset_10067/run_1012.mha`.
+ - Tomogram images should be organized by run ID and placed inside dataset directories with the prefix `run`, i.e., `dataset_10067/run_1012.mrc` or `dataset_10067/run_1012.mha`.
  - Segmentations should be organized by run ID and placed inside dataset directories with the prefix `seg`, i.e., `dataset_10067/seg_1012.mha`.
 
 # Pipeline
